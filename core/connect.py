@@ -64,11 +64,8 @@ class Cisco_IOS(Base_Commands):
         }
         super()._connect_network_device(switch)
 
-    def disconnect(self):
-        super()._disconnect_network_device()
 
-
-class Cisco_NXOS(Network_Device):
+class Cisco_NXOS(Base_Commands):
     """docstring for Nexus_Switch"""
 
     def __init__(self, *args):
@@ -86,9 +83,6 @@ class Cisco_NXOS(Network_Device):
         }
         super()._connect_network_device(switch)
 
-    def disconnect(self):
-        super()._disconnect_network_device()
-
     def run_command(self, command, textfsm=False):
         if textfsm is False:
             return self.connected.send_command(command)
@@ -96,7 +90,7 @@ class Cisco_NXOS(Network_Device):
             return self.connected.send_command(command, use_textfsm=True)
 
 
-class Cisco_ASA(Network_Device):
+class Cisco_ASA(Base_Commands):
     """docstring for Cisco_ASA"""
 
     def __init__(self, *args):
@@ -113,9 +107,6 @@ class Cisco_ASA(Network_Device):
             'port': self.port
         }
         super()._connect_network_device(switch)
-
-    def disconnect(self):
-        super()._disconnect_network_device()
 
     def run_command(self, command, textfsm=False):
         if textfsm is False:
